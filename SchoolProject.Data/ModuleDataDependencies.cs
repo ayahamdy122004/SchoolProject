@@ -1,6 +1,6 @@
 ﻿namespace SchoolProject.Data
 {
-    public class Class1
+    public class ModuleDataDependencies
     {
 
     }
