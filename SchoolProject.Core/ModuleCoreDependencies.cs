@@ -10,7 +10,8 @@ namespace SchoolProject.Core
         {
             //services.AddTransient<IStudentService,StudentService>();
            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ModuleCoreDependencies).Assembly));
-            //services.AddMediatorR(cfg=>cfg.R)
+            // autoMapper
+            services.AddAutoMapper(cfg => cfg.AddMaps(typeof(ModuleCoreDependencies).Assembly));
             return services;
         }   
     }

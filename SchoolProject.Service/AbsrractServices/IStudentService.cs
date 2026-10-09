@@ -10,5 +10,7 @@ namespace SchoolProject.Service.AbsrractServices
     public interface IStudentService
     {
         public Task<List<Student>> GetAllStudents();
+    public Task<Student> GetStudentById(int id);
+        public Task<string> Add(Student student);   
     }
 }
