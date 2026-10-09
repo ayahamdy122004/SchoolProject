@@ -7,6 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
     <PackageReference Include="MediatR" Version="12.5.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="9.0.20">
       <PrivateAssets>all</PrivateAssets>
@@ -19,13 +21,6 @@
     <ProjectReference Include="..\SchoolProject.Data\SchoolProject.Data.csproj" />
     <ProjectReference Include="..\SchoolProject.Infrastructure\SchoolProject.Infrastructure.csproj" />
     <ProjectReference Include="..\SchoolProject.Service\SchoolProject.Service.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Features\Students\Commands\Handlers\" />
-    <Folder Include="Features\Students\Commands\Models\" />
-    <Folder Include="Features\Students\Commands\Validations\" />
-    <Folder Include="Mappping\" />
   </ItemGroup>
 
 </Project>

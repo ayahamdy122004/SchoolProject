@@ -3,6 +3,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolProject.Infrastructure.Abstracts;
 using SchoolProject.Infrastructure.data;
+using SchoolProject.Infrastructure.InfrastructureBases;
 using SchoolProject.Infrastructure.Repositories;
 
 namespace SchoolProject.Infrastructure
@@ -14,6 +15,7 @@ namespace SchoolProject.Infrastructure
         {
             
             services.AddTransient<IStudentRepository, StudentRepository>();
+            services.AddTransient(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             return services;
 
         }
