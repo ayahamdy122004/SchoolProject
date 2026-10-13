@@ -24,11 +24,7 @@ namespace SchoolProject.Service.Implementation
         #region function
         public async Task<string> Add(Student student)
         {
-            var studentResult = await repo.GetTableNoTracking().
-                Where(x => x.Name.Equals(student.Name)).FirstOrDefaultAsync();
-            if (studentResult != null)
-                return "Name is Exist!!!!!";
-
+         
             await repo.AddAsync(student);
             return "Success";
         }
@@ -42,6 +38,16 @@ namespace SchoolProject.Service.Implementation
             var student = await repo.GetTableNoTracking().Include(x => x.Department)
                     .FirstOrDefaultAsync(x => x.StudID == id);
             return student;
+        }
+
+        public async Task<bool> IsNameExist(string name)
+        {
+            var studentResult = await repo.GetTableNoTracking().
+                Where(x => x.Name.Equals(name)).FirstOrDefaultAsync();
+            if (studentResult != null)
+                return true;
+            return false;   
+
         }
         #endregion
 
