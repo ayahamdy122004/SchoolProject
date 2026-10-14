@@ -32,7 +32,7 @@ namespace SchoolProject.Core.MiddleWare
             {
                 var response = context.Response;
                 response.ContentType = "application/json";
-                var responseModel = new Response<string>() { Succeeded = false, Message = error?.Message };
+                var responseModel = new Response<string>() { Succeeded = false, Message = error.Message };
                 //TODO:: cover all validation errors
                 switch (error)
                 {

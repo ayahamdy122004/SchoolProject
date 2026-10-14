@@ -18,9 +18,10 @@ namespace SchoolProject.Core.Features.Students.Commands.Validations
         #region Constructors
         public AddStudentValidator(IStudentService _studentService)
         {
+            this._studentService = _studentService;
             ApplyValidationRules();
             ApplyCustomValidationRules();  
-            this._studentService = _studentService;
+           
         }
         #endregion
         #region Actions

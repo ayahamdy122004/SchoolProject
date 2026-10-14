@@ -28,6 +28,13 @@ namespace SchoolProject.Service.Implementation
             await repo.AddAsync(student);
             return "Success";
         }
+
+        public async Task<string> EditAsync(Student student)
+        {
+          await repo.UpdateAsync(student);
+            return "Success";
+        }
+
         public async Task<List<Student>> GetAllStudents()
         {
             return await repo.GetAllStudentsAsync();
@@ -35,11 +42,10 @@ namespace SchoolProject.Service.Implementation
         public async Task<Student> GetStudentById(int id)
         {
             //  return await repo.GetByIdAsync(id);
-            var student = await repo.GetTableNoTracking().Include(x => x.Department)
-                    .FirstOrDefaultAsync(x => x.StudID == id);
+            var student = await repo.GetTableNoTracking().Include(x => x.Department).Where(x => x.StudID == id)
+                    .FirstOrDefaultAsync();
             return student;
         }
-
         public async Task<bool> IsNameExist(string name)
         {
             var studentResult = await repo.GetTableNoTracking().
@@ -48,6 +54,16 @@ namespace SchoolProject.Service.Implementation
                 return true;
             return false;   
 
+        }
+        public async Task<bool> IsNameExistExcludeSelf(string name, int id)
+        {
+
+            var studentResult = await repo.GetTableNoTracking().
+               Where(x => x.Name.Equals(name)&!x.StudID.Equals(id)).
+               FirstOrDefaultAsync();
+            if (studentResult != null)
+                return true;
+            return false;
         }
         #endregion
 

@@ -12,6 +12,9 @@ namespace SchoolProject.Service.AbsrractServices
         public Task<List<Student>> GetAllStudents();
     public Task<Student> GetStudentById(int id);
         public Task<string> Add(Student student);   
+      //  public Task<Student> Update(Student student);
         public Task<bool> IsNameExist(string name);
+        public Task<bool> IsNameExistExcludeSelf(string name,int id);
+        public Task<string> EditAsync(Student student); 
     }
 }
