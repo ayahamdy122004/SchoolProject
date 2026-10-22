@@ -3,28 +3,16 @@ using SchoolProject.Data.Entities;
 using SchoolProject.Infrastructure.Abstracts;
 using SchoolProject.Infrastructure.data;
 using SchoolProject.Infrastructure.InfrastructureBases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolProject.Infrastructure.Repositories
 {
-    public class StudentRepository :GenericRepository<Student>, IStudentRepository
+    public class StudentRepository(AppDbContext db) : GenericRepository<Student>(db), IStudentRepository
     {
-        private readonly AppDbContext db;
-        private readonly DbSet<Student> students;
-        public StudentRepository(AppDbContext db): base(db)  
+        private readonly DbSet<Student> _students = db.Students;
+
+        public async Task<List<Student>> GetAllStudentsAsync()
         {
-            this.db = db;
-            students = db.Students; 
-        }
-       public async Task<List<Student>> GetAllStudentsAsync()
-        {
-           //return await db.Students.Include(s => s.Department).
-           //     ToListAsync();
-           return await students.Include(x=>x.Department).ToListAsync();
+            return await _students.Include(x => x.Department).ToListAsync();
         }
     }
 }

@@ -2,7 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolProject.Core.Behaviors;
-using SchoolProject.Service.AbsrractServices;
+using SchoolProject.Service.AbstractServices;
 using SchoolProject.Service.Implementation;
 using System.Reflection;
 

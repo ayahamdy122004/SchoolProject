@@ -1,42 +1,31 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using SchoolProject.Infrastructure.data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolProject.Infrastructure.InfrastructureBases
 {
-
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T>(AppDbContext dbContext) : IGenericRepository<T> where T : class
     {
         #region Vars / Props
 
-        protected readonly AppDbContext _dbContext;
+        protected readonly AppDbContext _dbContext = dbContext;
 
         #endregion
-        #region Constructor(s)
-        public GenericRepository(AppDbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
 
-        #endregion
-        #region Methods
-
-        #endregion
         #region Actions
-        public virtual async Task<T> GetByIdAsync(int id)
+        public virtual async Task<T?> GetByIdAsync(int id)
         {
 
             return await _dbContext.Set<T>().FindAsync(id);
         }
+
+
         public IQueryable<T> GetTableNoTracking()
         {
             return _dbContext.Set<T>().AsNoTracking().AsQueryable();
         }
+
+
         public virtual async Task AddRangeAsync(ICollection<T> entities)
         {
             await _dbContext.Set<T>().AddRangeAsync(entities);
@@ -50,12 +39,14 @@ namespace SchoolProject.Infrastructure.InfrastructureBases
 
             return entity;
         }
+
         public virtual async Task UpdateAsync(T entity)
         {
             _dbContext.Set<T>().Update(entity);
             await _dbContext.SaveChangesAsync();
 
         }
+
         public virtual async Task DeleteAsync(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
@@ -69,10 +60,14 @@ namespace SchoolProject.Infrastructure.InfrastructureBases
             }
             await _dbContext.SaveChangesAsync();
         }
+
         public async Task SaveChangesAsync()
         {
             await _dbContext.SaveChangesAsync();
         }
+
+
+
         public IDbContextTransaction BeginTransaction()
         {
             return _dbContext.Database.BeginTransaction();
@@ -83,20 +78,37 @@ namespace SchoolProject.Infrastructure.InfrastructureBases
             _dbContext.Database.CommitTransaction();
 
         }
+
         public void RollBack()
         {
             _dbContext.Database.RollbackTransaction();
-
         }
+
         public IQueryable<T> GetTableAsTracking()
         {
             return _dbContext.Set<T>().AsQueryable();
 
         }
+
         public virtual async Task UpdateRangeAsync(ICollection<T> entities)
         {
             _dbContext.Set<T>().UpdateRange(entities);
             await _dbContext.SaveChangesAsync();
+        }
+
+        public async Task<IDbContextTransaction> BeginTransactionAsync()
+        {
+            return await _dbContext.Database.BeginTransactionAsync();
+        }
+
+        public async Task CommitAsync()
+        {
+            await _dbContext.Database.CommitTransactionAsync();
+        }
+
+        public async Task RollBackAsync()
+        {
+            await _dbContext.Database.RollbackTransactionAsync();
         }
         #endregion
     }

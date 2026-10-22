@@ -8,21 +8,17 @@ namespace SchoolProject.Core.Bases
 {
     public class ResponseHandler
     {
-
-        public ResponseHandler()
-        {
-
-        }
-        public Response<T> Deleted<T>()
+        public Response<T> Deleted<T>(string? Message = null)
         {
             return new Response<T>()
             {
                 StatusCode = System.Net.HttpStatusCode.OK,
                 Succeeded = true,
-                Message = "Deleted Successfully"
+              //  Message = "Deleted Successfully"
+              Message = Message==null?"Deleted Successfully": Message
             };
         }
-        public Response<T> Success<T>(T entity, object Meta = null)
+        public Response<T> Success<T>(T entity, object? Meta = null)
         {
             return new Response<T>()
             {
@@ -42,7 +38,7 @@ namespace SchoolProject.Core.Bases
                 Message = "UnAuthorized"
             };
         }
-        public Response<T> BadRequest<T>(string Message = null)
+        public Response<T> BadRequest<T>(string? Message = null)
         {
             return new Response<T>()
             {
@@ -52,7 +48,7 @@ namespace SchoolProject.Core.Bases
             };
         }
 
-        public Response<T> NotFound<T>(string message = null)
+        public Response<T> NotFound<T>(string? message = null)
         {
             return new Response<T>()
             {
@@ -62,7 +58,7 @@ namespace SchoolProject.Core.Bases
             };
         }
 
-        public Response<T> Created<T>(T entity, object Meta = null)
+        public Response<T> Created<T>(T entity, object? Meta = null)
         {
             return new Response<T>()
             {

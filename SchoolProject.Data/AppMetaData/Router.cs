@@ -18,7 +18,9 @@ namespace SchoolProject.Data.AppMetaData
              public const string Prefix = Rule + "Student";
             public const string List = Prefix + "/List";
             public const string Add = Prefix + "/Add";
-            public const string Eidt = Prefix + "/Eidt";
+            public const string Edit = Prefix + "/Edit";
+            public const string Paginad = Prefix + "Paginad";
+            public const string Delete = Prefix + "/Delete"+ SingleRoute;
             public const string GetByID = Prefix + SingleRoute;
                 
                 

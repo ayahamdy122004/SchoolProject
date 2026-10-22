@@ -1,7 +1,8 @@
-﻿using SchoolProject.Core.Bases; 
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SchoolProject.Core.Bases; 
+using SchoolProject.Core.Wrappers;
 using System.Net;
 
 namespace SchoolProject.Api.Base
@@ -21,5 +22,6 @@ namespace SchoolProject.Api.Base
                 _ => new BadRequestObjectResult(response)
             };
         }
+
     }
 }

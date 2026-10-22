@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using SchoolProject.Service.AbsrractServices;
+using SchoolProject.Service.AbstractServices;
 using SchoolProject.Service.Implementation;
 
 namespace SchoolProject.Service
