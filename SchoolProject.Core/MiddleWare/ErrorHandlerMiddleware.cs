@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using SchoolProject.Core.Bases;
 using System;
 using System.Collections.Generic;
@@ -13,23 +14,18 @@ using System.Threading.Tasks;
 
 namespace SchoolProject.Core.MiddleWare
 {
-    public class ErrorHandlerMiddleware
+    public class ErrorHandlerMiddleware(RequestDelegate next, ILogger<ErrorHandlerMiddleware> logger)
     {
-        private readonly RequestDelegate _next;
-
-        public ErrorHandlerMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
-
         public async Task Invoke(HttpContext context)
         {
             try
             {
-                await _next(context);
+                await next(context);
             }
             catch (Exception error)
             {
+                logger.LogError(error, "Unhandled exception while processing the request: {Message}", error.Message);
+
                 var response = context.Response;
                 response.ContentType = "application/json";
                 var responseModel = new Response<string>() { Succeeded = false, Message = error.Message };

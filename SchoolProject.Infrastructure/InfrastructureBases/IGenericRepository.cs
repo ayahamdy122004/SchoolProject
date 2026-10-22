@@ -1,16 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolProject.Infrastructure.InfrastructureBases
 {
     public interface IGenericRepository<T> where T : class
     {
         Task DeleteRangeAsync(ICollection<T> entities);
-        Task<T> GetByIdAsync(int id);
+        Task<T?> GetByIdAsync(int id);
         Task SaveChangesAsync();
         IDbContextTransaction BeginTransaction();
         void Commit();
@@ -22,5 +17,9 @@ namespace SchoolProject.Infrastructure.InfrastructureBases
         Task UpdateAsync(T entity);
         Task UpdateRangeAsync(ICollection<T> entities);
         Task DeleteAsync(T entity);
+
+        Task<IDbContextTransaction> BeginTransactionAsync();
+        Task CommitAsync();
+        Task RollBackAsync();
     }
 }
