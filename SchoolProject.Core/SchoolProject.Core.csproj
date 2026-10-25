@@ -30,9 +30,7 @@
     <Folder Include="Features\Departments\Command\Models\" />
     <Folder Include="Features\Departments\Command\Validations\" />
     <Folder Include="Features\Departments\Command\ResultCommands\" />
-    <Folder Include="Features\Departments\Quaries\Handlers\" />
-    <Folder Include="Features\Departments\Quaries\Models\" />
-    <Folder Include="Features\Departments\Quaries\Results\" />
+    <Folder Include="Mappping\DepartmentMapping\CommandMapping\" />
   </ItemGroup>
 
 </Project>

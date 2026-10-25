@@ -25,5 +25,15 @@ namespace SchoolProject.Data.AppMetaData
                 
                 
         } 
+        public static class DepartmentRouting
+        {
+            public const string Prefix = Rule + "Department";
+            public const string List = Prefix + "/List";
+            public const string Add = Prefix + "/Add";
+            public const string Edit = Prefix + "/Edit";
+            public const string Paginad = Prefix + "Paginad";
+            public const string Delete = Prefix + "/Delete" + SingleRoute;
+            public const string GetByID = Prefix + SingleRoute;
+        }
     }
 }
