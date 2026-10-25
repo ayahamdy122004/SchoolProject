@@ -89,6 +89,8 @@ namespace SchoolProject.Infrastructure.InfrastructureBases
             return _dbContext.Set<T>().AsQueryable();
 
         }
+      
+
 
         public virtual async Task UpdateRangeAsync(ICollection<T> entities)
         {
