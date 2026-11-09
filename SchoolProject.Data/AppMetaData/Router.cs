@@ -35,5 +35,32 @@ namespace SchoolProject.Data.AppMetaData
             public const string Delete = Prefix + "/Delete" + SingleRoute;
             public const string GetByID = Prefix + SingleRoute;
         }
+        public static class AppicationUserRouting 
+        {
+            public const string Prefix = Rule + "User";
+            public const string Add = Prefix + "/Add";
+            public const string Edit = Prefix + "/Edit";
+            public const string Paginad = Prefix + "Paginad";
+            public const string GetByID = Prefix + SingleRoute;
+            public const string Delete = Prefix + "/Delete" + SingleRoute;
+            public const string ChangePassword = Prefix + "/ChangePassword";
+
+        }
+        public static class Authentication
+        {
+            public const string Prefix = Rule + "Authentication";
+            public const string SignIn = Prefix + "/SignIn";
+        }
+
+        public static class Authorization {
+            public const string Prefix = Rule + "Authorization";
+            public const string Add = Prefix + "/Role/AddRole";
+            public const string List = Prefix + "/Role/List";
+            public const string Edit = Prefix + "/Role/Edit"; 
+            public const string Delete = Prefix + "/Role/Delete";
+            public const string GetByID = Prefix + "/Role"+SingleRoute;
+
+
+        }
     }
 }
